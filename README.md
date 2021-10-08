@@ -1,2 +1,2 @@
-# VT-test
+# vt-test
 VisibleThread Test
