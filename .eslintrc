@@ -14,7 +14,16 @@
   "plugins": ["react", "react-hooks"],
   "rules": {
     "no-use-before-define": "off",
-    "react/jsx-filename-extension": ["warn", { "extensions": [".js"] }],
+    "semi": [2, "never"],
+    "comma-dangle": ["error", "always-multiline"],
+    "class-methods-use-this": "error",
+    "no-useless-constructor": "error",
+    "lines-between-class-members": ["error", "always"],
+    "consistent-return": "error",
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 1,
+    "import/prefer-default-export": "warn",
+    "import/no-named-as-default": "warn",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -24,8 +33,35 @@
       }
     ],
     "no-shadow": "off",
+    "no-undef": "error",
+    "no-unused-vars": "error",
+    "react/require-default-props": "off",
+    "react/prop-types": "off",
+    "react/forbid-prop-types": "off",
+    "react/self-closing-comp": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "import/prefer-default-export": "warn"
+    "react/jsx-closing-bracket-location": "error",
+    "react/prefer-stateless-function": [
+      "error",
+      {
+        "ignorePureComponents": true
+      }
+    ],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/jsx-one-expression-per-line": [
+      "error",
+      {
+        "allow": "single-child"
+      }
+    ],
+    "react/destructuring-assignment": 1,
+    "react/state-in-constructor": 1,
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/anchor-is-valid": "warn",
+    "jsx-a11y/no-static-element-interactions": "error",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "no-param-reassign": ["error", { "props": false }],
+    "jsx-quotes": ["error", "prefer-single"]
   }
 }
