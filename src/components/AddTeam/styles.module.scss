@@ -1,0 +1,8 @@
+.addTeam {
+  display: flex;
+  justify-content: center;
+
+  &__button {
+    max-width: 8rem;
+  }
+}
