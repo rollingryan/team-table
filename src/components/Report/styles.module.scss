@@ -1,0 +1,17 @@
+.ReportFilterForm {
+  &__heading {
+    text-align: center;
+  }
+
+  &__group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__field {
+    max-width: 16rem;
+    margin: 0 0.5rem;
+  }
+}
