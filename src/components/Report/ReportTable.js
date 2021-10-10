@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid'
 import { Row, Col, Table } from 'react-bootstrap'
 import styles from './styles.module.scss'
 
-const ReportTable = ({ type, data }) => {
+const ReportTable = ({ type = '', data = [] }) => {
   const dateTypes = {
     monthly: 'MMM',
     weekly: 'w',
@@ -64,95 +64,97 @@ const ReportTable = ({ type, data }) => {
   const cols = [...new Set(scansData.map((item) => item.col))]
 
   return (
-    <Row className={styles.reportTable}>
-      <Col
-        className={`${styles.reportTable__body} ${
-          (type === 'weekly' && styles.reportTable__body__weekly) || ''
-        }`}
-      >
-        <Table striped bordered hover className={styles.reportTable__table}>
-          <thead>
-            <tr>
-              {cols.map(
-                (col) =>
-                  col && (
-                    <th key={uuid()} className={styles.reportTable__body__th}>
-                      {`${(type === 'weekly' && 'Week ') || ''}${col}`}
-                    </th>
-                  ),
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {teamsData[type]?.map(
-              (team) =>
-                team && (
-                  <tr key={uuid()}>
-                    {cols.map(
-                      (col) =>
-                        col && (
-                          <td key={uuid()}>
-                            {scansData.find(
-                              (scan) =>
-                                (scan && scan.teamName === team.teamName) ||
-                                (scan.teamName === team &&
-                                  getCol(scan.date) === col),
-                            )[scanTypes[type]] || 'null'}
-                          </td>
-                        ),
-                    )}
-                  </tr>
-                ),
-            )}
-          </tbody>
-        </Table>
-      </Col>
-      <Col
-        className={`${styles.reportTable__sticky} ${
-          (type === 'weekly' && styles.reportTable__sticky__weekly) || ''
-        }`}
-      >
-        <Table
-          striped
-          bordered
-          hover
-          className={`${styles.reportTable__table} ${
-            (type === 'weekly' && styles.reportTable__table__weekly) || ''
+    data?.length > 0 && (
+      <Row className={styles.reportTable}>
+        <Col
+          className={`${styles.reportTable__body} ${
+            (type === 'weekly' && styles.reportTable__body__weekly) || ''
           }`}
         >
-          <thead>
-            <tr>
-              <th>Team</th>
-              {type === 'monthly' && (
-                <>
-                  <th>Average</th>
-                  <th>Total</th>
-                </>
+          <Table striped bordered hover className={styles.reportTable__table}>
+            <thead>
+              <tr>
+                {cols.map(
+                  (col) =>
+                    col && (
+                      <th key={uuid()} className={styles.reportTable__body__th}>
+                        {`${(type === 'weekly' && 'Week ') || ''}${col}`}
+                      </th>
+                    ),
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {teamsData[type]?.map(
+                (team) =>
+                  team && (
+                    <tr key={uuid()}>
+                      {cols.map(
+                        (col) =>
+                          col && (
+                            <td key={uuid()}>
+                              {scansData.find(
+                                (scan) =>
+                                  (scan && scan.teamName === team.teamName) ||
+                                  (scan.teamName === team &&
+                                    getCol(scan.date) === col),
+                              )[scanTypes[type]] || 'null'}
+                            </td>
+                          ),
+                      )}
+                    </tr>
+                  ),
               )}
-            </tr>
-          </thead>
-          <tbody>
-            {teamsData[type]?.map(
-              (item) =>
-                item && (
-                  <tr key={uuid()}>
-                    <td>{(type === 'monthly' && item.teamName) || item}</td>
-                    {type === 'monthly' && (
-                      <>
-                        <td>
-                          {(type === 'monthly' && item.monthlyAverage) ||
-                            item.weeklyAverage}
-                        </td>
-                        <td>{item.totalScans}</td>
-                      </>
-                    )}
-                  </tr>
-                ),
-            )}
-          </tbody>
-        </Table>
-      </Col>
-    </Row>
+            </tbody>
+          </Table>
+        </Col>
+        <Col
+          className={`${styles.reportTable__sticky} ${
+            (type === 'weekly' && styles.reportTable__sticky__weekly) || ''
+          }`}
+        >
+          <Table
+            striped
+            bordered
+            hover
+            className={`${styles.reportTable__table} ${
+              (type === 'weekly' && styles.reportTable__table__weekly) || ''
+            }`}
+          >
+            <thead>
+              <tr>
+                <th>Team</th>
+                {type === 'monthly' && (
+                  <>
+                    <th>Average</th>
+                    <th>Total</th>
+                  </>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {teamsData[type]?.map(
+                (item) =>
+                  item && (
+                    <tr key={uuid()}>
+                      <td>{(type === 'monthly' && item.teamName) || item}</td>
+                      {type === 'monthly' && (
+                        <>
+                          <td>
+                            {(type === 'monthly' && item.monthlyAverage) ||
+                              item.weeklyAverage}
+                          </td>
+                          <td>{item.totalScans}</td>
+                        </>
+                      )}
+                    </tr>
+                  ),
+              )}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    )
   )
 }
 

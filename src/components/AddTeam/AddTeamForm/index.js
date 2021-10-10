@@ -42,7 +42,7 @@ const AddTeamForm = () => {
           setAlertVariant('success')
         } else {
           setDisplayAlert(true)
-          setAlertMessage(response.data)
+          setAlertMessage('Something went wrong')
           setAlertVariant('warning')
         }
       })

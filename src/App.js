@@ -7,13 +7,11 @@ import AddTeam from './components/AddTeam'
 import Report from './components/Report'
 
 const App = () => (
-  <div className='wrapper'>
-    <Container fluid>
-      <Header />
-      <Report />
-      <AddTeam />
-    </Container>
-  </div>
+  <Container fluid>
+    <Header />
+    <Report />
+    <AddTeam />
+  </Container>
 )
 
 export default App
