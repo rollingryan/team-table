@@ -75,10 +75,9 @@ const AddTeamForm = () => {
         controlId='formTeamName'
         className={styles.addTeamForm__group}
       >
-        <Form.Label>Team Name</Form.Label>
         <Form.Control
           type='text'
-          placeholder='Enter name'
+          placeholder='Team Name'
           onChange={(event) => {
             setNewName(event.target.value)
           }}
