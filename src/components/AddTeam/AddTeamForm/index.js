@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Form, Button, Alert } from 'react-bootstrap'
+import { Form, Button, Alert, Spinner } from 'react-bootstrap'
 import styles from './styles.module.scss'
 
 const AddTeamForm = () => {
   const [newName, setNewName] = useState('')
   const [teams, setTeams] = useState('')
+  const [loading, setLoading] = useState(false)
   const [displayAlert, setDisplayAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
   const [alertVariant, setAlertVariant] = useState('')
 
-  const getTeamsUrl = 'http://stubber.test.visiblethread.com/teams/allNames'
   const getAllTeams = () => {
     axios
-      .get(getTeamsUrl)
+      .get('http://stubber.test.visiblethread.com/teams/allNames')
       .then((response) => {
         const allTeamNames = response.data
         setTeams(allTeamNames)
@@ -30,6 +30,7 @@ const AddTeamForm = () => {
       setDisplayAlert(true)
       setAlertMessage('Team name must be valid and unique.')
       setAlertVariant('danger')
+      setLoading(false)
       return
     }
 
@@ -45,11 +46,13 @@ const AddTeamForm = () => {
           setAlertMessage('Something went wrong')
           setAlertVariant('warning')
         }
+        setLoading(false)
       })
       .catch((error) => {
         setDisplayAlert(true)
         setAlertMessage(error.message)
         setAlertVariant('danger')
+        setLoading(false)
       })
   }
 
@@ -57,6 +60,7 @@ const AddTeamForm = () => {
     <Form
       onSubmit={(event) => {
         event.preventDefault()
+        setLoading(true)
         addNewTeam()
       }}
       className={styles.addTeamForm}
@@ -84,8 +88,8 @@ const AddTeamForm = () => {
         />
       </Form.Group>
 
-      <Button variant='outline-primary' type='submit'>
-        Send
+      <Button variant='outline-warning' type='submit' disabled={loading}>
+        {(loading && <Spinner animation='border' variant='warning' />) || 'Add'}
       </Button>
     </Form>
   )
