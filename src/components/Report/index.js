@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Form, Row, Button, Alert } from 'react-bootstrap'
+import { Form, Row, Button, Spinner, Alert } from 'react-bootstrap'
 import ReportTable from './ReportTable'
 import styles from './styles.module.scss'
 
@@ -9,6 +9,7 @@ const Report = () => {
   const [reportAmount, setReportAmount] = useState(null)
   const [type, setType] = useState('')
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
   const [displayAlert, setDisplayAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
   const [alertVariant, setAlertVariant] = useState('')
@@ -20,6 +21,7 @@ const Report = () => {
         'You need to select a report type AND set the number of items to retrieve.',
       )
       setAlertVariant('danger')
+      setLoading(false)
       return
     }
 
@@ -31,16 +33,19 @@ const Report = () => {
         if (response.status === 200) {
           setType(reportType)
           setData(response.data)
+          setDisplayAlert(false)
         } else {
           setDisplayAlert(true)
           setAlertMessage('Something went wrong')
           setAlertVariant('warning')
         }
+        setLoading(false)
       })
       .catch((error) => {
         setDisplayAlert(true)
         setAlertMessage(error.message)
         setAlertVariant('danger')
+        setLoading(false)
       })
   }
 
@@ -50,10 +55,15 @@ const Report = () => {
         <Form
           onSubmit={(event) => {
             event.preventDefault()
+            setLoading(true)
             getReportData()
           }}
           className={styles.ReportFilterForm}
         >
+          <h5 className={styles.ReportFilterForm__heading}>
+            Generate a report by submitting the form below
+          </h5>
+
           {(displayAlert && (
             <Alert
               variant={alertVariant}
@@ -64,9 +74,7 @@ const Report = () => {
             </Alert>
           )) ||
             null}
-          <h5 className={`text-muted ${styles.ReportFilterForm__heading}`}>
-            Generate a report by submitting the form below
-          </h5>
+
           <Form.Group
             controlId='formFilterReport'
             className={styles.ReportFilterForm__group}
@@ -81,6 +89,7 @@ const Report = () => {
               <option value='weekly'>Weekly</option>
               <option value='monthly'>Monthly</option>
             </Form.Select>
+
             <Form.Control
               type='number'
               placeholder='How many?'
@@ -89,12 +98,17 @@ const Report = () => {
               }}
               className={styles.ReportFilterForm__field}
             />
+
             <Button
-              variant='primary'
+              variant='warning'
               type='submit'
               className={styles.ReportFilterForm__generateReportButton}
+              disabled={loading}
             >
-              Generate Report
+              {(loading && (
+                <Spinner animation='border' variant='secondary' />
+              )) ||
+                'Generate Report'}
             </Button>
           </Form.Group>
         </Form>

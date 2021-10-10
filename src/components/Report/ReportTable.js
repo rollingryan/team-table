@@ -71,7 +71,7 @@ const ReportTable = ({ type = '', data = [] }) => {
             (type === 'weekly' && styles.reportTable__body__weekly) || ''
           }`}
         >
-          <Table striped bordered hover className={styles.reportTable__table}>
+          <Table hover variant='dark' className={styles.reportTable__table}>
             <thead>
               <tr>
                 {cols.map(
@@ -115,8 +115,6 @@ const ReportTable = ({ type = '', data = [] }) => {
         >
           <Table
             striped
-            bordered
-            hover
             className={`${styles.reportTable__table} ${
               (type === 'weekly' && styles.reportTable__table__weekly) || ''
             }`}

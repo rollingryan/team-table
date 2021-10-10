@@ -13,7 +13,7 @@ const AddTeam = () => {
       <Row className={styles.addTeam}>
         <Button
           className={styles.addTeam__button}
-          variant='outline-primary'
+          variant='outline-warning'
           onClick={toggleModalVisible}
         >
           Add Team
