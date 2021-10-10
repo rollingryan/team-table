@@ -10,8 +10,8 @@ const App = () => (
   <div className='wrapper'>
     <Container fluid>
       <Header />
-      <AddTeam />
       <Report />
+      <AddTeam />
     </Container>
   </div>
 )

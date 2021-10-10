@@ -59,19 +59,23 @@ const ReportFilterForm = () => {
               setReportType(event.target.value)
             }}
           >
-            <option>Select report type</option>
+            <option>Report type</option>
             <option value='weekly'>Weekly</option>
             <option value='monthly'>Monthly</option>
           </Form.Select>
           <Form.Control
             type='number'
-            placeholder='How many should be displayed?'
+            placeholder='How many?'
             onChange={(event) => {
               setReportAmount(event.target.value)
             }}
             className={styles.ReportFilterForm__field}
           />
-          <Button variant='outline-secondary' type='submit'>
+          <Button
+            variant='primary'
+            type='submit'
+            className={styles.ReportFilterForm__generateReportButton}
+          >
             Generate Report
           </Button>
         </Form.Group>

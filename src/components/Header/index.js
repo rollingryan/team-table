@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import styles from './Header.module.scss'
+import styles from './styles.module.scss'
 
 const Header = () => (
   <Row className={styles.header}>

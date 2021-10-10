@@ -1,4 +1,6 @@
 .ReportFilterForm {
+  margin-bottom: 2rem;
+
   &__heading {
     text-align: center;
   }
@@ -13,5 +15,61 @@
   &__field {
     max-width: 16rem;
     margin: 0 0.5rem;
+  }
+
+  &__generateReportButton {
+    min-width: 10rem;
+  }
+}
+
+.reportTable {
+  position: relative;
+  overflow-x: auto;
+
+  &__table {
+    margin: 0;
+
+    &__weekly {
+      max-width: 10rem;
+    }
+  }
+
+  &__body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-left: 25rem;
+
+    &__weekly {
+      padding-left: 10rem;
+    }
+
+    &__th {
+      min-width: 6rem;
+    }
+  }
+
+  &__sticky {
+    position: sticky;
+    left: 0.5rem;
+    padding: 0;
+    max-width: 24.5rem;
+    font-weight: 700;
+    background: var(--bs-white);
+
+    &__weekly {
+      max-width: 9.5rem;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -1rem;
+      width: 1rem;
+      height: 100%;
+      display: block;
+      background: var(--bs-white);
+    }
   }
 }
