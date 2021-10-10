@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header 1`] = `
+<div
+  className="header row"
+>
+  <div
+    className="header__content col"
+  >
+    <h1
+      className="header__title"
+    >
+      <span>
+        Team
+      </span>
+      <span>
+        Scans
+      </span>
+    </h1>
+    <h4
+      className="header__subtitle"
+    >
+      By month or by week
+    </h4>
+  </div>
+</div>
+`;
