@@ -2,8 +2,6 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { Form, Row, Button, Alert } from 'react-bootstrap'
 import ReportTable from './ReportTable'
-// import data from '../../__mocks__/12months'
-// import data from '../../__mocks__/52weeks'
 import styles from './styles.module.scss'
 
 const Report = () => {
