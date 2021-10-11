@@ -86,11 +86,17 @@ const AddTeamForm = () => {
             setNewName(event.target.value)
           }}
         />
-      </Form.Group>
 
-      <Button variant='outline-warning' type='submit' disabled={loading}>
-        {(loading && <Spinner animation='border' variant='warning' />) || 'Add'}
-      </Button>
+        <Button
+          variant='outline-warning'
+          type='submit'
+          disabled={loading}
+          className={styles.addTeamForm__button}
+        >
+          {(loading && <Spinner animation='border' variant='warning' />) ||
+            'Add'}
+        </Button>
+      </Form.Group>
     </Form>
   )
 }
