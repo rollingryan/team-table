@@ -61,7 +61,7 @@ const ReportTable = ({ type = '', data = [] }) => {
     ),
   ]
 
-  const cols = [...new Set(scansData.map((item) => item.col))]
+  const cols = [...new Set(scansData.sort().map((item) => item.col))]
 
   return (
     data?.length > 0 && (
